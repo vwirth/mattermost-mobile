@@ -12,6 +12,16 @@ BASE_ASSETS = $(shell find assets/base -type d) $(shell find assets/base -type f
 OVERRIDE_ASSETS = $(shell find assets/override -type d 2> /dev/null) $(shell find assets/override -type f -name '*' 2> /dev/null)
 MM_UTILITIES_DIR = ../mattermost-utilities
 
+clean_npm:
+	@echo Clean npm
+	@npm cache clean --force
+
+mattermost_redux:
+	@echo preparing mattermost-redux
+	@npm install
+	@cd node_modules/mattermost-redux && npm install && npm run build
+	@cd ../..
+
 node_modules: package.json
 	@if ! [ $(shell which npm 2> /dev/null) ]; then \
 		echo "npm is not installed https://npmjs.com"; \
@@ -58,7 +68,7 @@ check-style: node_modules ## Runs eslint
 	@echo Checking for style guide compliance
 	@npm run check
 
-clean: ## Cleans dependencies, previous builds and temp files
+clean: | clean_npm ## Cleans dependencies, previous builds and temp files
 	@echo Cleaning started
 
 	@rm -f .podinstall
