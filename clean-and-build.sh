@@ -1,2 +1,2 @@
 #! /bin/sh
-make clean && make mattermost-redux && source ./fastlane/.env && make build-android
+make clean && make mattermost_redux && source ./fastlane/.env && make build-android
