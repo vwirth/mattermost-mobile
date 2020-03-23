@@ -77,7 +77,7 @@ tags
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
-fastlane/.env
+/*fastlane/.env*/
 fastlane/report.xml
 
 # Sentry
